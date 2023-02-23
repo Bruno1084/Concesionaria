@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Concesionaria {
@@ -80,7 +82,34 @@ public class Concesionaria {
             }
         }while (option != 0);
 
-        
+        public void vehiculosMasVendidos(){
+            Map <String, Integer> ventasPorMarca = new HashMap<>();
+            int i = 0;
+            //Marca Ford
+            ventasPorMarca.put("Ecosport", i);
+            ventasPorMarca.put("Territory", i);
+            ventasPorMarca.put("Ranger", i);
+            //Marca Mustang
+            ventasPorMarca.put("Ecobust", i);
+            ventasPorMarca.put("Mach1", i);
+            ventasPorMarca.put("Shelby", i);
+            //Marca Nissang
+            ventasPorMarca.put("Sentra", i);
+            ventasPorMarca.put("Versa", i);
+            ventasPorMarca.put("Leaf", i);
+
+            for(Prenda prenda : prenda){
+                ventasPorMarca.forEach((clave, valor)->{               //Expresión Lambda
+                    if (prenda.getVehuiculo().getModelo().equals(clave)){
+                        ventasPorMarca.replace(clave, i+1);
+                        System.out.println("Se ha sumado 1 al modelo: " + clave);
+                    }
+
+                });
+            }
+
+
+        }
     }
 
 
