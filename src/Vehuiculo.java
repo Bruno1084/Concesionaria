@@ -91,8 +91,6 @@ public class Vehuiculo {
         }
    }
 
-
-
     public long getPrecio() {
         return precio;
     }
@@ -100,7 +98,6 @@ public class Vehuiculo {
     public void setPrecio(long precio) {
         this.precio = precio;
     }
-
 
     public void rellenarVehiculo(){
         Scanner sc = new Scanner(System.in);

@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Concesionaria {
     private ArrayList<Prenda> prenda;
@@ -44,7 +44,7 @@ public class Concesionaria {
             System.out.println(prenda);
     }
 
-    public void modificarPrenda(){
+    public void modificarPrenda() {
         Prenda modPrenda = new Prenda();
         Scanner sc = new Scanner(System.in);
         String dniBuscar;
@@ -63,7 +63,7 @@ public class Concesionaria {
             System.out.println("0_ Salir");
             option = sc.nextInt();
 
-            switch (option){
+            switch (option) {
                 case 1 -> {
                     modPrenda.getTitular().rellenarTitular();
                     System.out.println("Datos de Titular actualizados");
@@ -78,10 +78,49 @@ public class Concesionaria {
                 }
                 default -> System.out.println("Ingrese una opción valida");
             }
-        }while (option != 0);
-
-        
+        } while (option != 0);
     }
+
+        public void vehiculosMasVendidos(){
+            Map <String, Integer> ventasPorMarca = new HashMap<>();
+            //Marca Ford
+            ventasPorMarca.put("Ecosport", 0);
+            ventasPorMarca.put("Territory", 0);
+            ventasPorMarca.put("Ranger", 0);
+            //Marca Mustang
+            ventasPorMarca.put("Ecobust", 0);
+            ventasPorMarca.put("Mach1", 0);
+            ventasPorMarca.put("Shelby", 0);
+            //Marca Nissang
+            ventasPorMarca.put("Sentra", 0);
+            ventasPorMarca.put("Versa", 0);
+            ventasPorMarca.put("Leaf", 0);
+
+            for(Prenda prenda : prenda){
+                ventasPorMarca.forEach((clave, valor)->{               //Expresión Lambda
+                    if (prenda.getVehuiculo().getModelo().equals(clave)){
+                        ventasPorMarca.replace(clave, valor +1);
+                    }
+
+                });
+            }
+
+            // Convertir el HashMap en un Stream de pares clave-valor y ordenarlo por el valor de los enteros
+            LinkedHashMap<String, Integer> sortedMap = ventasPorMarca.entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                    .collect(Collectors.toMap(
+                            Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+            // Recorrer las entradas del mapa ordenado en orden inverso e imprimir las claves y valores en forma vertical
+            Iterator<Map.Entry<String, Integer>> iterator = sortedMap.entrySet().iterator();
+
+                System.out.println("    Lista de modelos más vendidos");
+                for (int i=0; i<3; i++) {                  //Imprime los tres primeros autos más vendidos
+                    Map.Entry<String, Integer> entry = iterator.next();
+                    System.out.println(entry.getKey() + " -> " + entry.getValue());
+                }
+        }
 
 
  }

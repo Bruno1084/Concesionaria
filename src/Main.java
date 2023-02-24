@@ -15,8 +15,8 @@ public class Main {
             System.out.println("3) Imprimir prenda de un cliente");
             System.out.println("4) Imprimir todas las prendas");
             System.out.println("5) Modificar prenda");
-            /* Puntos pendientes
             System.out.println("6) Vehiculos más vendidos");
+            /* Puntos pendientes
             System.out.println("7) Imprimir prendas por vehiculo");
             System.out.println("8) Imprimir prendas de mayor y menor monto");
             */
@@ -33,8 +33,8 @@ public class Main {
                 }
                 case 4 -> Quique.imprimirPrendas();
                 case 5 -> Quique.modificarPrenda();
+                case 6 -> Quique.vehiculosMasVendidos();
                 case 9 -> Quique.borrarPrenda();
-
                 default -> System.out.println("Seleccione una opción valida");
             }
         }while (option != 0);
