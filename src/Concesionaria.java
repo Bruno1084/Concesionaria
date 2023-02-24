@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Concesionaria {
     private ArrayList<Prenda> prenda;
@@ -46,7 +44,7 @@ public class Concesionaria {
             System.out.println(prenda);
     }
 
-    public void modificarPrenda(){
+    public void modificarPrenda() {
         Prenda modPrenda = new Prenda();
         Scanner sc = new Scanner(System.in);
         String dniBuscar;
@@ -65,7 +63,7 @@ public class Concesionaria {
             System.out.println("0_ Salir");
             option = sc.nextInt();
 
-            switch (option){
+            switch (option) {
                 case 1 -> {
                     modPrenda.getTitular().rellenarTitular();
                     System.out.println("Datos de Titular actualizados");
@@ -80,7 +78,8 @@ public class Concesionaria {
                 }
                 default -> System.out.println("Ingrese una opción valida");
             }
-        }while (option != 0);
+        } while (option != 0);
+    }
 
         public void vehiculosMasVendidos(){
             Map <String, Integer> ventasPorMarca = new HashMap<>();
@@ -104,13 +103,25 @@ public class Concesionaria {
                         ventasPorMarca.replace(clave, i+1);
                         System.out.println("Se ha sumado 1 al modelo: " + clave);
                     }
-
                 });
+            }
+
+            // Convertir el HashMap en un Stream de pares clave-valor y ordenarlo por el valor de los enteros
+            LinkedHashMap<String, Integer> sortedMap = ventasPorMarca.entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                    .collect(Collectors.toMap(
+                            Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+            // Recorrer las entradas del mapa ordenado en orden inverso e imprimir las claves y valores en forma vertical
+            Iterator<Map.Entry<String, Integer>> iterator = sortedMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, Integer> entry = iterator.next();
+                System.out.println(entry.getKey() + " -> " + entry.getValue());
             }
 
 
         }
-    }
 
 
  }
