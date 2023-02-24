@@ -83,26 +83,25 @@ public class Concesionaria {
 
         public void vehiculosMasVendidos(){
             Map <String, Integer> ventasPorMarca = new HashMap<>();
-            int i = 0;
             //Marca Ford
-            ventasPorMarca.put("Ecosport", i);
-            ventasPorMarca.put("Territory", i);
-            ventasPorMarca.put("Ranger", i);
+            ventasPorMarca.put("Ecosport", 0);
+            ventasPorMarca.put("Territory", 0);
+            ventasPorMarca.put("Ranger", 0);
             //Marca Mustang
-            ventasPorMarca.put("Ecobust", i);
-            ventasPorMarca.put("Mach1", i);
-            ventasPorMarca.put("Shelby", i);
+            ventasPorMarca.put("Ecobust", 0);
+            ventasPorMarca.put("Mach1", 0);
+            ventasPorMarca.put("Shelby", 0);
             //Marca Nissang
-            ventasPorMarca.put("Sentra", i);
-            ventasPorMarca.put("Versa", i);
-            ventasPorMarca.put("Leaf", i);
+            ventasPorMarca.put("Sentra", 0);
+            ventasPorMarca.put("Versa", 0);
+            ventasPorMarca.put("Leaf", 0);
 
             for(Prenda prenda : prenda){
                 ventasPorMarca.forEach((clave, valor)->{               //Expresión Lambda
                     if (prenda.getVehuiculo().getModelo().equals(clave)){
-                        ventasPorMarca.replace(clave, i+1);
-                        System.out.println("Se ha sumado 1 al modelo: " + clave);
+                        ventasPorMarca.replace(clave, valor +1);
                     }
+
                 });
             }
 
@@ -115,12 +114,12 @@ public class Concesionaria {
 
             // Recorrer las entradas del mapa ordenado en orden inverso e imprimir las claves y valores en forma vertical
             Iterator<Map.Entry<String, Integer>> iterator = sortedMap.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, Integer> entry = iterator.next();
-                System.out.println(entry.getKey() + " -> " + entry.getValue());
-            }
 
-
+                System.out.println("    Lista de modelos más vendidos");
+                for (int i=0; i<3; i++) {                  //Imprime los tres primeros autos más vendidos
+                    Map.Entry<String, Integer> entry = iterator.next();
+                    System.out.println(entry.getKey() + " -> " + entry.getValue());
+                }
         }
 
 

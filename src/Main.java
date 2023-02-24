@@ -35,7 +35,6 @@ public class Main {
                 case 5 -> Quique.modificarPrenda();
                 case 6 -> Quique.vehiculosMasVendidos();
                 case 9 -> Quique.borrarPrenda();
-
                 default -> System.out.println("Seleccione una opción valida");
             }
         }while (option != 0);
