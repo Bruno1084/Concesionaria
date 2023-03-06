@@ -81,10 +81,10 @@ public class Concesionaria {
         } while (option != 0);
     }
 
-        public void vehiculosMasVendidos(){
+    public void vehiculosMasVendidos(){
             Map <String, Integer> ventasPorMarca = new HashMap<>();
             //Marca Ford
-            ventasPorMarca.put("Ecosport", 0);
+            ventasPorMarca.put("Ecosport", 0); 
             ventasPorMarca.put("Territory", 0);
             ventasPorMarca.put("Ranger", 0);
             //Marca Mustang
@@ -122,7 +122,19 @@ public class Concesionaria {
                 }
         }
 
+    public void prendasPorVehiculo(){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println("Ingrese el modelo para mostrar lista");
+        String vehiculoBuscar = sc.nextLine();
+
+        for(Prenda prenda : prenda){
+            if (prenda.getVehuiculo().getModelo().equals(vehiculoBuscar))
+                System.out.println(prenda);
+        }
+    }
+
+    
  }
 
 
